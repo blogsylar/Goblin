@@ -1,7 +1,13 @@
 package ru.macdroid.goblin.domain.model
 
+
+import com.google.gson.annotations.SerializedName
+
 data class LoginModel(
-    val sid: String,
-    val telegram: Boolean,
-    val role: Int
+    @SerializedName("data")
+    val data: LoginData,
+    @SerializedName("errors")
+    val errors: List<LoginErrors>,
+    @SerializedName("status")
+    val status: String
 )

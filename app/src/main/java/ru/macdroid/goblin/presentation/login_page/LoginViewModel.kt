@@ -8,7 +8,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import ru.macdroid.goblin.common.Constants
 import ru.macdroid.goblin.common.Resource
+import ru.macdroid.goblin.common.SharedPreference
+import ru.macdroid.goblin.domain.model.LoginModel
 import ru.macdroid.goblin.domain.use_case.get_sid.GetSidUseCase
 import javax.inject.Inject
 
@@ -21,37 +24,41 @@ class LoginViewModel @Inject constructor(
     private val _state = mutableStateOf(LoginState())
     val state: State<LoginState> = _state
 
+
 //    init {
-//        getSid("v.zhdanov@saures.ru", "123456")
+//        val login = SharedPreference.loadPreference(Constants.USER_LOGIN, "")
+//        val password = SharedPreference.loadPreference(Constants.USER_PASSWORD, "")
+//
+//        getSid(login ?: "", password ?: "")
 //
 //    }
 
     fun getSid(login: String, password: String) {
-
-        println("init get sid")
-
         getSidUseCase(login = login, password = password).onEach { result ->
-
-            println("init get sid ${result.data}")
 
             when (result) {
                 is Resource.Success -> {
-                    println("success ${result.data}")
                     _state.value = LoginState(login = result.data)
+                    saveDataToShared(result.data, login, password)
                 }
                 is Resource.Error -> {
-                    println("error ${result.data}")
                     _state.value = LoginState(
-                        error = result.message ?: "An unexpected error occured"
+                        error = result.message ?: "An unexpected error occurred"
                     )
                 }
                 is Resource.Loading -> {
-                    println("loading ${result.data}")
                     _state.value = LoginState(isLoading = true)
                 }
 
             }
         }.launchIn(viewModelScope)
+    }
+
+    private fun saveDataToShared(data: LoginModel?, login: String, password: String) {
+        SharedPreference.savePreference(Constants.USER_LOGIN, login)
+        SharedPreference.savePreference(Constants.USER_PASSWORD, password)
+        SharedPreference.savePreference(Constants.SID, data?.data?.sid)
+
     }
 
 }

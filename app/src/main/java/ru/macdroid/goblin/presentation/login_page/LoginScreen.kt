@@ -36,10 +36,13 @@ fun LoginScreen(
     val password = remember { mutableStateOf("123456") }
     val showError = remember { mutableStateOf(false) }
 
-    println("happy state ${state.login?.data?.sid}")
-
-//    LaunchedEffect(key1 = Unit) { // что-то делается на запуске
-//        viewModel.getSid(login.value, password.value)
+//    LaunchedEffect(key1 = state.login?.data?.sid) { // что-то делается на запуске
+//        val sid = state.login?.data?.sid
+//
+//        if (sid != null)
+//            navController.navigate("dashboard")
+//
+//        println("happy state $sid")
 //    }
 
     Surface() {
@@ -52,6 +55,17 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            if(state.isLoading) {
+                Row {
+                   Text(text = "Loading...")
+                }
+                Row {
+                    CircularProgressIndicator()
+                }
+                
+            }
+
             Row {
                 Column {
                     state.login?.data?.sid?.let { Text(text = it) }

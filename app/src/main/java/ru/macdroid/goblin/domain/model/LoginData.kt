@@ -1,9 +1,9 @@
-package ru.macdroid.goblin.data.remote.login_dto
+package ru.macdroid.goblin.domain.model
 
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginDataDto(
+data class LoginData(
     @SerializedName("api")
     val api: Int,
     @SerializedName("role")

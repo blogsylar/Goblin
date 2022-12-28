@@ -6,6 +6,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 import ru.macdroid.goblin.common.Constants
 import ru.macdroid.goblin.data.remote.login_dto.LoginModelDto
+import ru.macdroid.goblin.domain.model.LoginModel
 
 interface GoblinClient {
 
@@ -14,6 +15,6 @@ interface GoblinClient {
     suspend fun doLogin(
         @Field("email") login: String?,
         @Field("password") password: String?
-    ): LoginModelDto
+    ): LoginModel
 
 }
