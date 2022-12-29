@@ -1,7 +1,7 @@
 package ru.macdroid.goblin.data.repository
 
 import ru.macdroid.goblin.data.remote.GoblinClient
-import ru.macdroid.goblin.domain.model.LoginModel
+import ru.macdroid.goblin.domain.model.login.LoginModel
 import ru.macdroid.goblin.domain.repository.LoginRepository
 import javax.inject.Inject
 

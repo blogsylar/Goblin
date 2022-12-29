@@ -1,4 +1,4 @@
-package ru.macdroid.goblin.domain.model
+package ru.macdroid.goblin.domain.model.login
 
 
 import com.google.gson.annotations.SerializedName
@@ -11,3 +11,5 @@ data class LoginModel(
     @SerializedName("status")
     val status: String
 )
+
+

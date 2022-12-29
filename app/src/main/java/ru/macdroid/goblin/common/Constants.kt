@@ -14,6 +14,9 @@ object Constants {
     const val USER_LOGIN = "USER_LOGIN"
     const val USER_PASSWORD = "USER_PASSWORD"
     const val SID = "SID"
+    const val TELEGRAM = "TELEGRAM"
+    const val ROLE = "ROLE"
+    const val API = "API"
 
     const val ROUTE_LOGIN_SCREEN = "login_screen"
     const val ROUTE_DASHBOARD_SCREEN = "dashboard_screen"

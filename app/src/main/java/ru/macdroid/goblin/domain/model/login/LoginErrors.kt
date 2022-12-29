@@ -1,4 +1,4 @@
-package ru.macdroid.goblin.domain.model
+package ru.macdroid.goblin.domain.model.login
 
 
 data class LoginErrors(

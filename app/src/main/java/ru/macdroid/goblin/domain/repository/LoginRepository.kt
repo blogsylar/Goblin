@@ -1,6 +1,6 @@
 package ru.macdroid.goblin.domain.repository
 
-import ru.macdroid.goblin.domain.model.LoginModel
+import ru.macdroid.goblin.domain.model.login.LoginModel
 
 interface LoginRepository {
 

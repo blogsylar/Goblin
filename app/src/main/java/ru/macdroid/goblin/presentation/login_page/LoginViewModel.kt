@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.onEach
 import ru.macdroid.goblin.common.Constants
 import ru.macdroid.goblin.common.Resource
 import ru.macdroid.goblin.common.SharedPreference
-import ru.macdroid.goblin.domain.model.LoginModel
-import ru.macdroid.goblin.domain.use_case.get_sid.GetSidUseCase
+import ru.macdroid.goblin.domain.model.login.LoginModel
+import ru.macdroid.goblin.domain.use_case.login.GetSidUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,15 +23,6 @@ class LoginViewModel @Inject constructor(
 
     private val _state = mutableStateOf(LoginState())
     val state: State<LoginState> = _state
-
-
-//    init {
-//        val login = SharedPreference.loadPreference(Constants.USER_LOGIN, "")
-//        val password = SharedPreference.loadPreference(Constants.USER_PASSWORD, "")
-//
-//        getSid(login ?: "", password ?: "")
-//
-//    }
 
     fun getSid(login: String, password: String) {
         getSidUseCase(login = login, password = password).onEach { result ->
@@ -58,7 +49,9 @@ class LoginViewModel @Inject constructor(
         SharedPreference.savePreference(Constants.USER_LOGIN, login)
         SharedPreference.savePreference(Constants.USER_PASSWORD, password)
         SharedPreference.savePreference(Constants.SID, data?.data?.sid)
-
+        SharedPreference.savePreference(Constants.TELEGRAM, false)
+        SharedPreference.savePreference(Constants.ROLE, 1)
+        SharedPreference.savePreference(Constants.API, 1)
     }
 
 }

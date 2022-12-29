@@ -1,13 +1,12 @@
-package ru.macdroid.goblin.domain.use_case.get_sid
+package ru.macdroid.goblin.domain.use_case.login
 
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import ru.macdroid.goblin.common.Resource
-import ru.macdroid.goblin.data.remote.login_dto.LoginModelDto
 import ru.macdroid.goblin.domain.repository.LoginRepository
 import java.io.IOException
 import kotlinx.coroutines.flow.Flow
-import ru.macdroid.goblin.domain.model.LoginModel
+import ru.macdroid.goblin.domain.model.login.LoginModel
 import javax.inject.Inject
 
 class GetSidUseCase @Inject constructor(

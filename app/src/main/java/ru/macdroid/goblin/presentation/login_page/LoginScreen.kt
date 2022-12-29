@@ -36,15 +36,6 @@ fun LoginScreen(
     val password = remember { mutableStateOf("123456") }
     val showError = remember { mutableStateOf(false) }
 
-//    LaunchedEffect(key1 = state.login?.data?.sid) { // что-то делается на запуске
-//        val sid = state.login?.data?.sid
-//
-//        if (sid != null)
-//            navController.navigate("dashboard")
-//
-//        println("happy state $sid")
-//    }
-
     Surface() {
         Column(
             modifier = Modifier
