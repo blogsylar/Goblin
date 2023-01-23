@@ -25,8 +25,8 @@ class LoginViewModel @Inject constructor(
     val state: State<LoginState> = _state
 
     fun getSid(login: String, password: String) {
-        getSidUseCase(login = login, password = password).onEach { result ->
 
+        getSidUseCase(login = login, password = password).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.value = LoginState(login = result.data)

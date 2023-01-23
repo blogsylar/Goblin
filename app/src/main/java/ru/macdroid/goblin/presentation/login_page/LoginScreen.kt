@@ -17,11 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import ru.macdroid.goblin.common.SessionId
 import ru.macdroid.goblin.common.isValidEmail
 import ru.macdroid.goblin.navigation.Screen
 
@@ -35,6 +32,13 @@ fun LoginScreen(
     val login = remember { mutableStateOf("v.zhdanov@saures.ru") }
     val password = remember { mutableStateOf("123456") }
     val showError = remember { mutableStateOf(false) }
+
+    LaunchedEffect(key1 = state.login?.data?.sid) {
+        state.login?.data?.sid?.let {
+            SessionId.sid = it
+        navController.navigate(Screen.Dashboard.route)
+        }
+    }
 
     Surface() {
         Column(
